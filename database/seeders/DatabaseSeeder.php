@@ -1,0 +1,58 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Desa;
+use App\Models\Kota;
+use App\Models\User;
+use App\Models\Alamat;
+use App\Models\Negara;
+use App\Models\Pondok;
+use App\Models\Provinsi;
+use App\Models\Kecamatan;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\AlamatTable;
+use App\Models\Kawasan;
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
+
+        $negaras = Negara::factory(3)->create();
+
+        foreach ($negaras as $negara) {
+            $Provinsis = Provinsi::factory(3)->create(['negara_id' => $negara->id]);
+
+            foreach ($Provinsis as $provinsi) {
+                $kotas = Kota::factory(3)->create(['provinsi_id' => $provinsi->id]);
+
+                foreach ($kotas as $kota) {
+                    $kecamatans = Kecamatan::factory(3)->create(['kota_id' => $kota->id]);
+
+                    foreach ($kecamatans as $kecamatan) {
+                        $desas = Desa::factory(3)->create(['kecamatan_id' => $kecamatan->id]);
+
+                        foreach ($desas as $desa) {
+                            $alamats = Alamat::factory(10)->create(['desa_id' => $desa->id]);
+
+                            for ($i = 0; $i < count($alamats); $i++) {
+                                Pondok::factory()->create();
+                                Kawasan::factory()->create();
+                                User::factory()->create();
+                                AlamatTable::factory()->create();
+                            }
+
+                        }
+                    }
+                }
+            }
+
+
+        }
+    }
+}
