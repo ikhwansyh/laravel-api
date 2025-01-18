@@ -23,8 +23,8 @@ class Pondok extends Model
         return $this->hasMany(User::class);
     }
 
-    public function detail()
+    public function alamats()
     {
-        return $this->morphOne(AlamatTable::class, 'alamatable',);
+        return $this->morphToMany(Alamat::class, 'alamatable',);
     }
 }

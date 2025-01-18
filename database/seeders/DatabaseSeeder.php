@@ -8,11 +8,11 @@ use App\Models\User;
 use App\Models\Alamat;
 use App\Models\Negara;
 use App\Models\Pondok;
+use App\Models\Kawasan;
 use App\Models\Provinsi;
 use App\Models\Kecamatan;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\AlamatTable;
-use App\Models\Kawasan;
+use App\Models\Alamatable;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
                                 Pondok::factory()->create();
                                 Kawasan::factory()->create();
                                 User::factory()->create();
-                                AlamatTable::factory()->create();
+                                Alamatable::factory()->create();
                             }
 
                         }

@@ -15,13 +15,12 @@ class Kawasan extends Model
         'pondok_id'
     ];
 
-
     public function pondok(){
         return $this->belongsTo(Pondok::class);
     }
 
-    public function detail()
+    public function alamats()
     {
-        return $this->morphOne(AlamatTable::class, 'alamatable',);
+        return $this->morphToMany(Alamat::class, 'alamatable',);
     }
 }

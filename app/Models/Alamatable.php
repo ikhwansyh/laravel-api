@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AlamatTable extends Model
+class Alamatable extends Model
 {
     /** @use HasFactory<\Database\Factories\AlamatTableFactory> */
     use HasFactory;
@@ -16,15 +16,9 @@ class AlamatTable extends Model
         'alamatable_type',
     ];
 
-
     public function alamatable()
     {
         return $this->morphTo();
-    }
-
-    public function alamat()
-    {
-        return $this->belongsTo(Alamat::class , 'alamat_id');
     }
 
 }

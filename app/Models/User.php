@@ -48,9 +48,9 @@ class User extends Authenticatable
         ];
     }
 
-    public function detail()
+    public function alamats()
     {
-        return $this->morphOne(AlamatTable::class, 'alamatable',);
+        return $this->morphToMany(Alamat::class, 'alamatable',);
     }
 
     public function pondok()
