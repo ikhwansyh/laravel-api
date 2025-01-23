@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Pondok;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Alamat extends Model
 {
@@ -19,25 +20,17 @@ class Alamat extends Model
     public function desa() {
         return $this->belongsTo(Desa::class);
     }
-
     public function kawasans()
     {
         return $this->morphedByMany(Kawasan::class, 'alamatable');
     }
-
     public function pondoks()
     {
         return $this->morphedByMany(Pondok::class, 'alamatable');
     }
-
     public function users()
     {
         return $this->morphedByMany(User::class, 'alamatable');
-    }
-
-      public function alamatable()
-    {
-        return $this->morphTo();
     }
 
 }

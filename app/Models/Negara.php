@@ -15,7 +15,6 @@ class Negara extends Model
         'name'
     ];
 
-
     public function provinsis()
     {
         return $this->hasMany(Provinsi::class);

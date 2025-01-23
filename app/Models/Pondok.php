@@ -28,3 +28,17 @@ class Pondok extends Model
         return $this->morphToMany(Alamat::class, 'alamatable',);
     }
 }
+
+
+/*
+Table = Yang D jembatani : ALAMAT
+MorpByMany / MorphOne
+
+Table PIVOT = JEMBATAN : ALAMATABLE
+// MorpTo
+
+Table = Pegguna Jembatan : USER , PONDOK , KAWASAN , KANTOR,
+// MorphToMany / MorphOne
+
+*/
+
