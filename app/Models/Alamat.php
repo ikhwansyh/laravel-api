@@ -37,44 +37,44 @@ class Alamat extends Model
 
 }
 
-<?php
 
-public function sukses($myself,
-$skill,
-$kesempatan,
-$paksa,
-$bisa,
-$terbiasa,
-$luarbisa): bool {
-    $myself = strtoupper($myself);
-    $peluang = (count($skill) * 0.1) +
-    (array_sum($kesempatan) * 0.1) +
-    ($paksa * 0.05) + ($terbiasa * 0.05) +
-    ($luarbisa * 0.02);
-    $bisa = $bisa || $paksa > 3;
 
-    return $peluang >= 0.95;
-}
-$myself = "Bambang";
-$skill = ["logika", "pemrograman", "analisis"];
-$kesempatan = [0.3, 0.4, 0.2];
-$paksa = 5;
-$bisa = false;
-$terbiasa = 10;
-$luarbisa = 15;
+// public function sukses($myself,
+// $skill,
+// $kesempatan,
+// $paksa,
+// $bisa,
+// $terbiasa,
+// $luarbisa): bool {
+//     $myself = strtoupper($myself);
+//     $peluang = (count($skill) * 0.1) +
+//     (array_sum($kesempatan) * 0.1) +
+//     ($paksa * 0.05) + ($terbiasa * 0.05) +
+//     ($luarbisa * 0.02);
+//     $bisa = $bisa || $paksa > 3;
 
-$result = sukses($myself,
-$skill,
-$kesempatan,
-$paksa,
-$bisa,
-$terbiasa,
-$luarbisa);
+//     return $peluang >= 0.95;
+// }
+// $myself = "Bambang";
+// $skill = ["logika", "pemrograman", "analisis"];
+// $kesempatan = [0.3, 0.4, 0.2];
+// $paksa = 5;
+// $bisa = false;
+// $terbiasa = 10;
+// $luarbisa = 15;
 
-echo $result ?
-"Selamat $myself, Anda telah mencapai sukses!\n" :
-"$myself, tetap semangat! Maksimalkan lagi!.\n";
+// $result = sukses($myself,
+// $skill,
+// $kesempatan,
+// $paksa,
+// $bisa,
+// $terbiasa,
+// $luarbisa);
 
-?>
+// echo $result ?
+// "Selamat $myself, Anda telah mencapai sukses!\n" :
+// "$myself, tetap semangat! Maksimalkan lagi!.\n";
+
+
 
 
