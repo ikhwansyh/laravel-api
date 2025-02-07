@@ -41,11 +41,10 @@ class PondokController extends Controller
     public function show(string $id)
     {
         $pondok = Pondok::findOrFail($id);
-        
-        if (!$pondok) {
-            return response()->json(['message' => 'Pondok not found'], 900);
-        }
 
+        if (!$pondok) {
+            return response()->json(['message' => 'Pondok not found'], 404);
+        }
 
         return response()->json($pondok);
     }
