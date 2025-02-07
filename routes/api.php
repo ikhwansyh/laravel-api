@@ -7,15 +7,14 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PondokController;
 
 
-Route::post('login', [AuthController::class, 'login']);
+Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-
     Route::resource('pondok', PondokController::class);
     Route::resource('user', UserController::class);
-    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });

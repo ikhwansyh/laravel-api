@@ -13,15 +13,15 @@ class AuthController extends Controller
     public function login(Request $request)
     {
 
-     Log::info($request->all());
-
        try {
             $validated = $request->validate([
                 'email' => 'required',
                 'password' => 'required'
             ]);
         } catch (ValidationException $e) {
-            return Log::info($e->getMessage());
+            return response()->json([
+               'error_message' => $e->getMessage()
+            ]);
         }
 
         $user = User::where('email', $validated['email'])->first();
@@ -29,14 +29,12 @@ class AuthController extends Controller
         Log::info($user);
 
         if (!$user || !Hash::check($validated['password'], $user->password)) {
-            throw ValidationException::withMessages(['message' => 'Email atau Password Salah']);
+            return response()->json([
+                'message' => 'Password Atau Email Salah'
+            ]);
         }
 
-        Log::info('Checkpoint 1');
-
         $token = $user->createToken('auth_token')->plainTextToken;
-
-        Log::info('Checkpoint 2');
 
         return response()->json([
             'data' => $user,
@@ -45,5 +43,15 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(Request $request) {}
+    public function logout(Request $request) {
+
+        $user = $request->user();
+
+        $user->tokens()->delete();
+
+        return response()->json([
+            'message' => $user->name.' Berhasil Logout'
+        ]);
+
+    }
 }

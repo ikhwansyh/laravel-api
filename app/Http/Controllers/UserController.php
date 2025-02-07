@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Container\Attributes\Log as AttributesLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Container\Attributes\Log as AttributesLog;
 
 class UserController extends Controller
 {
@@ -31,20 +32,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        $request->validate([
-            'pondok_id' => 'required',
-            'email' => 'required',
-            'name' => 'required',
-            'password' => 'required'
-        ]);
-
-
+        try {
+            $request->validate([
+                'pondok_id' => 'required',
+                'email' => 'required',
+                'name' => 'required',
+                'password' => 'required'
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+               'error_message' => $e->getMessage()
+            ]);
+        }
 
         var_dump('OK INI RUNNING DSNI');
-
-
 
         $user = User::create([
             'pondok_id' => $request->pondok_id,
@@ -76,29 +77,26 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Log::info('Function Update Running');
 
         $user = User::findOrFail($id);
-
-        Log::info('ini user yang akan di updated'.$user);
-
-        Log::info($request->all());
 
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
 
-        Log::info('Ini Check point setelah if statement');
-
-        $dataUser = $request->validate([
-            'name' => 'required'
-        ]);
-
-        Log::info('Ini Check point setelah validate');
-
+       try {
+            $dataUser = $request->validate([
+                'pondok_id' => 'nullable',
+                'email' => 'nullable',
+                'name' => 'nullable',
+                'password' => 'nullable'
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+               'error_message' => $e->getMessage()
+            ]);
+        }
         $user->update($dataUser);
-
-        Log::info('Ini Check point setelah User Update');
 
         return response()->json([
             'message' => 'Data ' . $user->name . ' Berhasil Update',
