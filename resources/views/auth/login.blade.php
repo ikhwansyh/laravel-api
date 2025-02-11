@@ -34,9 +34,9 @@
                             have an account.</p>
 
 
-
                         <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
                             @csrf
+
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input id="email" type="email"
@@ -50,31 +50,27 @@
                             </div>
 
                             <div class="form-group">
-
-                                    <label for="password" class="control-label">Password</label>
-
-                                    <div class="input-group">
-
-                                        {{-- <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-lock text-muted"></i>
-                                            </div>
-                                        </div> --}}
-                                        
-                                        <input id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            placeholder="Enter your password" tabindex="2" required>
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-eye" id="togglePassword" style="cursor: pointer;"></i>
-                                            </div>
+                                <label for="password" class="control-label">Password</label>
+                                <div class="input-group">
+                                    {{-- <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-lock text-muted"></i>
                                         </div>
-
-                                @error('password')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
+                                    </div> --}}
+                                    <input id="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        placeholder="Enter your password" tabindex="2" required>
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+                                        </div>
                                     </div>
-                                @enderror
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -122,7 +118,7 @@
                                 <h5 class="font-weight-normal text-muted-transparent">Bali, Indonesia</h5>
                             </div>
                             Photo by <a class="text-light bb" target="_blank"
-                                href="https://unsplash.com/photos/a8lTjWJJgLA">Justin Kauffman</a> on <a
+                                href="https://unsplash.com/photos/black-and-white-laptop-computer-pJaocJrXGFQ">EL Ghifari</a> on <a
                                 class="text-light bb" target="_blank" href="https://unsplash.com">Unsplash</a>
                         </div>
                     </div>
@@ -142,18 +138,12 @@
 
     <!-- JS Libraies -->
 
-    <!-- Page Specific JS File -->
-
-    <!-- Template JS File -->
-
-
-
-    <script>
+     <script>
         // JavaScript buat toggle icon mata dan visibility password
         const togglePassword = document.querySelector('#togglePassword');
         const password = document.querySelector('#password');
 
-        togglePassword.addEventListener('click', function() {
+        togglePassword.addEventListener('click', function () {
             // toggle the type attribute
             const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
             password.setAttribute('type', type);
@@ -162,18 +152,13 @@
             this.classList.toggle('fa-eye-slash');
             this.classList.toggle('fa-eye');
         });
-
     </script>
 
-<!-- Page Specific JS File -->
+    <!-- Page Specific JS File -->
 
-<!-- Template JS File -->
-<script src="{{ asset('js/scripts.js') }}"></script>
-<script src="{{ asset('js/custom.js') }}"></script>
+    <!-- Template JS File -->
+    <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 </body>
-
-
-
-
 
 </html>
